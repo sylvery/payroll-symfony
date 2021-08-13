@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Penalty{% endblock %}
+
+{% block body %}
+    <h1>Create new Penalty</h1>
+
+    {{ include('penalty/_form.html.twig') }}
+
+    <a href="{{ path('penalty_index') }}">back to list</a>
+{% endblock %}

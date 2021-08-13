@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Author{% endblock %}
+
+{% block body %}
+    <div class="row my-3">
+        <div class="col-12">
+            <h1>Update Author</h1>
+            {{ include('author/_form.html.twig', {'button_label': 'update'}) }}
+        </div>
+    </div>
+{% endblock %}

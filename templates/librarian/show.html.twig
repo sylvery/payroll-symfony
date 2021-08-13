@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Librarian{% endblock %}
+
+{% block body %}
+    <h1>Librarian</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ librarian.id }}</td>
+            </tr>
+            <tr>
+                <th>Sysrole</th>
+                <td>{{ librarian.sysrole }}</td>
+            </tr>
+            <tr>
+                <th>Fname</th>
+                <td>{{ librarian.fname }}</td>
+            </tr>
+            <tr>
+                <th>Lname</th>
+                <td>{{ librarian.lname }}</td>
+            </tr>
+            <tr>
+                <th>Dob</th>
+                <td>{{ librarian.dob ? librarian.dob|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ librarian.gender }}</td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>{{ librarian.mobile }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ librarian.email }}</td>
+            </tr>
+            <tr>
+                <th>LocationAddress</th>
+                <td>{{ librarian.locationAddress }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('librarian_index') }}">back to list</a>
+
+    <a href="{{ path('librarian_edit', {'id': librarian.id}) }}">edit</a>
+
+    {{ include('librarian/_delete_form.html.twig') }}
+{% endblock %}

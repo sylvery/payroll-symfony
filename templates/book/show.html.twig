@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{book.title}} - Book{% endblock %}
+
+{% block body %}
+    <div class="row my-3">
+        <div class="col-12">
+            <h1>Book: {{book.title}}</h1>
+            <table class="table table-sm small table-striped table-inverse">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ book.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Title</th>
+                        <td>{{ book.title }}</td>
+                    </tr>
+                    {% if book.publication %}
+                    <tr>
+                        <th>Authors</th>
+                        <td class="list-group">
+                                {% for author in book.publication.author %}
+                                    <a href="{{path('author_show',{'id':author.id})}}" class="list-group-item list-group-item-action">{{ author.fullname }}</a>
+                                {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Authors</th>
+                        <td class="list-group">
+                                {% for author in book.publication.author %}
+                                    <a href="{{path('author_show',{'id':author.id})}}" class="list-group-item list-group-item-action">{{ author.fullname }}</a>
+                                {% endfor %}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <th>Reading Level</th>
+                        <td>{{ book.readingLevel }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ book.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Borrow/Total</th>
+                        <td>{{ book.onBorrow }}/{{ book.total }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <div class="btn-group">
+                <a class="btn btn-warning" href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
+                <a class="btn btn-secondary" href="{{ path('book_index') }}">back to list</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

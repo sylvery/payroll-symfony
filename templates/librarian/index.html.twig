@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Librarian index{% endblock %}
+
+{% block body %}
+    <h1>Librarian index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Sysrole</th>
+                <th>Fname</th>
+                <th>Lname</th>
+                <th>Dob</th>
+                <th>Gender</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>LocationAddress</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for librarian in librarians %}
+            <tr>
+                <td>{{ librarian.id }}</td>
+                <td>{{ librarian.sysrole }}</td>
+                <td>{{ librarian.fname }}</td>
+                <td>{{ librarian.lname }}</td>
+                <td>{{ librarian.dob ? librarian.dob|date('Y-m-d') : '' }}</td>
+                <td>{{ librarian.gender }}</td>
+                <td>{{ librarian.mobile }}</td>
+                <td>{{ librarian.email }}</td>
+                <td>{{ librarian.locationAddress }}</td>
+                <td>
+                    <a href="{{ path('librarian_show', {'id': librarian.id}) }}">show</a>
+                    <a href="{{ path('librarian_edit', {'id': librarian.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('librarian_new') }}">Create new</a>
+{% endblock %}

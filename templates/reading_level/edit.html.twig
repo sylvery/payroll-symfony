@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Reading Level{% endblock %}
+
+{% block body %}
+    <div class="row my-3">
+        <div class="col-12">
+            <h1>Update Reading Level</h1>
+            {{ include('reading_level/_form.html.twig', {'button_label': 'update'}) }}
+        </div>
+    </div>
+{% endblock %}

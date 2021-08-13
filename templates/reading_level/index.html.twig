@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reading Levels{% endblock %}
+
+{% block body %}
+    <div class="row my-3">
+        <div class="col-12">
+            <h1>Reading Levels</h1>
+            <a class="btn btn-warning" href="{{ path('reading_level_new') }}">add new</a>
+            <div class="card-columns my-3">
+                {% for reading_level in reading_levels %}
+                    <div class="card" style="background: {{reading_level.colorCode}}30;">
+                        <img class="card-img-top" src="holder.js/100x180/" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ reading_level.fullname }}</h4>
+                            <p class="card-text"><span class="text-muted small">Books:</span> {{reading_level.books|length|default('0')}}</p>
+                            <p class="card-text">{{reading_level.description|raw}}</p>
+                            <a class="btn btn-outline-secondary btn-sm small" href="{{path('reading_level_show',{'id': reading_level.id})}}">details</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="card border-danger">
+                        <img class="card-img-top" src="holder.js/100x180/" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title text-danger">No Reading Levels Registered</h4>
+                            <p class="card-text">There are no Reading Levels found! Please add some Reading Levels to get a populated card list.</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

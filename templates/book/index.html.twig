@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book index{% endblock %}
+
+{% block body %}
+    <div class="row my-3">
+        <div class="col-12">
+            <h1>Books</h1>
+            <a class="btn btn-warning" href="{{ path('book_new') }}">add new</a>
+            <div class="card-columns my-3">
+                {% for book in books %}
+                    <div class="card">
+                        <img class="card-img-top" src="holder.js/100x180/" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ book.title }}</h4>
+                            <p class="card-text"><span class="text-muted">Publisher:</span> {{book.publication.pubyear|default('0')}}</p>
+                            <p class="card-text">{{book.description|raw}}</p>
+                            <a class="btn btn-outline-secondary btn-sm small" href="{{path('book_show',{'id': book.id})}}">details</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="card border-danger">
+                        <img class="card-img-top" src="holder.js/100x180/" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title text-danger">No Books Registered</h4>
+                            <p class="card-text">There are no books found! Please add some books to get a populated card list.</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

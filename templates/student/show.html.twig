@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{student.fullname}} - Student{% endblock %}
+
+{% block body %}
+    <div class="row my-3">
+        <div class="col-12 mb-3">
+            <h1>{{student.fullname}}</h1>
+            <table class="table table-sm small table-striped table-inverse">
+                <tbody>
+                    <tr>
+                        <th>Dob</th>
+                        <td>{{ student.dob ? student.dob|date('Y-m-d') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <td>{{ student.gender }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile</th>
+                        <td>{{ student.mobile }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ student.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>School</th>
+                        <td>{{ student.school }}</td>
+                    </tr>
+                    <tr>
+                        <th>LocationAddress</th>
+                        <td>{{ student.locationAddress }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="btn-group">
+                <a class="btn btn-warning" href="{{ path('student_edit', {'id': student.id}) }}">edit</a>
+                <a class="btn btn-secondary" href="{{ path('student_index') }}">back to list</a>
+            </div>
+        </div>
+        <div class="col-12 mb-2">
+            <div class="card-columns">
+                {% for borrow in student.borrows %}
+                    <div class="card">
+                        <img class="card-img-top" src="holder.js/100x180/" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="{{path('borrow_show',{'id': borrow.id})}}">{{borrow.book.title}}</a></h4>
+                            <p class="card-text">{{borrow.borrowDate|date('jS F Y')}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

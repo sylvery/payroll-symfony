@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Borrow{% endblock %}
+
+{% block body %}
+    <div class="row my-3">
+        <div class="col-12 mb-2">
+            <h1>Borrow</h1>
+            <table class="table table-sm small table-striped table-inverse">
+                <tbody>
+                    <tr>
+                        <th>Student</th>
+                        <td><a href="{{path('student_show',{'id': borrow.student.id})}}">{{ borrow.student }}</a></td>
+                    </tr>
+                    <tr>
+                        <th>Book</th>
+                        <td><a href="{{path('book_show',{'id': borrow.book.id})}}">{{ borrow.book }}</a></td>
+                    </tr>
+                    <tr>
+                        <th>Issued by</th>
+                        <td>{{ borrow.librarian }}</td>
+                    </tr>
+                    <tr>
+                        <th>Borrow Date</th>
+                        <td>{{ borrow.borrowDate ? borrow.borrowDate|date('jS F Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Due Date</th>
+                        <td>{{ borrow.dueDate ? borrow.dueDate|date('jS F Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Return Date</th>
+                        <td>{{ borrow.returnDate ? borrow.returnDate|date('jS F Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{'ConditionBeforeBorrow'|humanize}}</th>
+                        <td>{{ borrow.conditionBeforeBorrow }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{'ConditionWhenReturned'|humanize}}</th>
+                        <td>{{ borrow.conditionWhenReturned }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="btn-group">
+                <a class="btn btn-warning" href="{{ path('borrow_edit', {'id': borrow.id}) }}">edit</a>
+                <a class="btn btn-secondary" href="{{ path('borrow_index') }}">back to list</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
