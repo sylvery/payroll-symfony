@@ -15,13 +15,8 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(BookRepository $br, StudentRepository $sr, AuthorRepository $ar, LibrarianRepository $lr): Response
+    public function index(): Response
     {
-        return $this->render('main/index.html.twig',[
-            'books' => $br->findAll(),
-            'students' => $sr->findAll(),
-            'authors' => $ar->findAll(),
-            'librarians' => $lr->findAll(),
-        ]);
+        return $this->render('main/index.html.twig');
     }
 }
